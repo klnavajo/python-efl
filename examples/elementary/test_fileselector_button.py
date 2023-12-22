@@ -31,10 +31,14 @@ def toggle_expandable(bt, fsb):
     fsb.expandable = not fsb.expandable
 
 
+def save_cb(fsb, selected):
+    print(selected)
+
+
 class FsButton(Fileselector, FileselectorButton):
 
-    def __init__(self, *args, **kwargs):
-        FileselectorButton.__init__(self, *args, **kwargs)
+    def __init__(self, parent, *args, **kwargs):
+        FileselectorButton.__init__(self, parent, *args, **kwargs)
 
 
 def fileselector_button_clicked(obj, item=None):
@@ -47,11 +51,14 @@ def fileselector_button_clicked(obj, item=None):
     win.resize_object_add(vbox)
     vbox.show()
 
-    fse = FsButton(win, text="Select a file", inwin_mode=False,
+    fsb = FsButton(win, text="Select a file", inwin_mode=False,
                              size_hint_align=FILL_BOTH,
                              size_hint_weight=EXPAND_BOTH)
-    vbox.pack_end(fse)
-    fse.show()
+    fsb.callback_file_chosen_add(save_cb)
+    #fsb.callback_done_add(save_cb)
+    #fsb.callback_activated_add(save_cb)
+    vbox.pack_end(fsb)
+    fsb.show()
 
     sep = Separator(win, horizontal=True)
     vbox.pack_end(sep)
@@ -61,23 +68,23 @@ def fileselector_button_clicked(obj, item=None):
     vbox.pack_end(hbox)
     hbox.show()
 
-    ck = Check(win, text="inwin", state=fse.inwin_mode)
-    ck.callback_changed_add(toggle_inwin, fse)
+    ck = Check(win, text="inwin", state=fsb.inwin_mode)
+    ck.callback_changed_add(toggle_inwin, fsb)
     hbox.pack_end(ck)
     ck.show()
 
-    ck = Check(win, text="folder_only", state=fse.folder_only)
-    ck.callback_changed_add(toggle_folder_only, fse)
+    ck = Check(win, text="folder_only", state=fsb.folder_only)
+    ck.callback_changed_add(toggle_folder_only, fsb)
     hbox.pack_end(ck)
     ck.show()
 
-    ck = Check(win, text="is_save", state=fse.is_save)
-    ck.callback_changed_add(toggle_is_save, fse)
+    ck = Check(win, text="is_save", state=fsb.is_save)
+    ck.callback_changed_add(toggle_is_save, fsb)
     hbox.pack_end(ck)
     ck.show()
 
-    ck = Check(win, text="expandable", state=fse.expandable)
-    ck.callback_changed_add(toggle_expandable, fse)
+    ck = Check(win, text="expandable", state=fsb.expandable)
+    ck.callback_changed_add(toggle_expandable, fsb)
     hbox.pack_end(ck)
     ck.show()
 
