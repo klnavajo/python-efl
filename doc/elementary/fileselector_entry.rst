@@ -72,9 +72,9 @@ inherit both the widget class and the
 :py:class:`~efl.elementary.fileselector.Fileselector` class
 using multiple inheritance, for example::
 
-    class CustomFileselectorButton(Fileselector, FileselectorButton):
-        def __init__(self, canvas, *args, **kwargs):
-            FileselectorButton.__init__(self, canvas)
+    class CustomFileselectorEntry(Fileselector, FileselectorEntry):
+        def __init__(self, parent, *args, **kwargs):
+            FileselectorButton.__init__(self, parent, *args, **kwargs)
 
 
 Inheritance diagram
