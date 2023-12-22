@@ -60,8 +60,8 @@ inherit both the widget class and the
 using multiple inheritance, for example::
 
     class CustomFileselectorButton(Fileselector, FileselectorButton):
-        def __init__(self, canvas, *args, **kwargs):
-            FileselectorButton.__init__(self, canvas)
+        def __init__(self, parent, *args, **kwargs):
+            FileselectorButton.__init__(self, parent, *args, **kwargs)
 
 
 Inheritance diagram
