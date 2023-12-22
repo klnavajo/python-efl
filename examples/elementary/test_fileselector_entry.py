@@ -31,10 +31,14 @@ def toggle_expandable(bt, fse):
     fse.expandable = not fse.expandable
 
 
+def save_cb(fse, selected):
+    print(selected)
+
+
 class FsEntry(Fileselector, FileselectorEntry):
 
-    def __init__(self, *args, **kwargs):
-        FileselectorEntry.__init__(self, *args, **kwargs)
+    def __init__(self, parent, *args, **kwargs):
+        FileselectorEntry.__init__(self, parent, *args, **kwargs)
 
 
 def fileselector_entry_clicked(obj, item=None):
@@ -50,6 +54,9 @@ def fileselector_entry_clicked(obj, item=None):
     fse = FsEntry(win, text="Select a file", inwin_mode=False,
                             size_hint_align=FILL_BOTH,
                             size_hint_weight=EXPAND_BOTH)
+    fse.callback_file_chosen_add(save_cb)
+    #fse.callback_done_add(save_cb)
+    #fse.callback_activated_add(save_cb)
     vbox.pack_end(fse)
     fse.show()
 
