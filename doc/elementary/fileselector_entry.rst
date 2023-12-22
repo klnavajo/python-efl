@@ -74,7 +74,7 @@ using multiple inheritance, for example::
 
     class CustomFileselectorEntry(Fileselector, FileselectorEntry):
         def __init__(self, parent, *args, **kwargs):
-            FileselectorButton.__init__(self, parent, *args, **kwargs)
+            FileselectorEntry.__init__(self, parent, *args, **kwargs)
 
 
 Inheritance diagram
